@@ -46,6 +46,10 @@ if (DESKTOP_APP_USE_PACKAGED)
         target_link_libraries(external_qt INTERFACE Qt::WaylandCompositor)
     endif()
 
+    if (TARGET Qt::WaylandClientPrivate)
+        target_link_libraries(external_qt INTERFACE Qt::WaylandClientPrivate)
+    endif()
+
     return()
 endif()
 
@@ -65,6 +69,8 @@ INTERFACE
     ${qt_loc}/include/QtCore/${QT_VERSION}
     ${qt_loc}/include/QtGui/${QT_VERSION}
     ${qt_loc}/include/QtWidgets/${QT_VERSION}
+    $<$<TARGET_EXISTS:Qt::WaylandClientPrivate>:${qt_loc}/include/QtWaylandClient/${QT_VERSION}>
+    $<$<TARGET_EXISTS:Qt::WaylandClientPrivate>:${qt_loc}/include/QtWaylandClient/${QT_VERSION}/QtWaylandClient>
     ${qt_loc}/include/QtCore/${QT_VERSION}/QtCore
     ${qt_loc}/include/QtGui/${QT_VERSION}/QtGui
     ${qt_loc}/include/QtWidgets/${QT_VERSION}/QtWidgets

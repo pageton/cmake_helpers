@@ -81,6 +81,7 @@ endif()
 
 if (LINUX)
     find_package(Qt${QT_VERSION_MAJOR} OPTIONAL_COMPONENTS DBus WaylandCompositor QUIET)
+    find_package(Qt${QT_VERSION_MAJOR} OPTIONAL_COMPONENTS WaylandClientPrivate QUIET)
 endif()
 
 set_property(GLOBAL PROPERTY AUTOGEN_SOURCE_GROUP "(gen)")
