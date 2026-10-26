@@ -35,9 +35,13 @@ elseif (APPLE)
         IMPORTED_LOCATION ${libs_loc}/local/lib/libada.a
     )
 else()
+    find_path(DESKTOP_APP_ADA_INCLUDE_DIR ada.h)
+    if (NOT DESKTOP_APP_ADA_INCLUDE_DIR)
+        set(DESKTOP_APP_ADA_INCLUDE_DIR /usr/local/include)
+    endif()
     target_include_directories(external_ada SYSTEM
     INTERFACE
-        /usr/local/include
+        ${DESKTOP_APP_ADA_INCLUDE_DIR}
     )
     find_library(DESKTOP_APP_ADA_LIBRARIES libada.a REQUIRED)
     set_target_properties(external_ada PROPERTIES
